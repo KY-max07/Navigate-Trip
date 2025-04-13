@@ -1,5 +1,21 @@
+@import '../public/fonts.css';
 @import "tailwindcss";
 @import "tw-animate-css";
+
+html,body {
+   background:rgb(244, 245, 251);
+   
+}
+
+@theme{
+  --font-primary: 'Clash';
+  --font-secondary: "Cabinet";
+  --color-side: rgb(1, 9, 255);
+  
+  --color-form:rgb(128, 128, 128);
+  --color-home:rgb(244, 245, 251);
+  
+}
 
 @custom-variant dark (&:is(.dark *));
 
