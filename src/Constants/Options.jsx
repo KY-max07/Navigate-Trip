@@ -60,7 +60,7 @@ export const Budget = [
 ];
 export let config = {};
 
-export const AI_PROMPT = `You are a travel planner. Generate a travel plan for {location} for a {traveller} for {totaldays} on a {budget} budget.
+export const AI_PROMPT = `You are a travel planner. Generate a travel plan for {location} for a {traveller} for {totaldays}(strictly follow) on a {budget} budget.
   Return the response strictly in JSON format with the following structure:
   
   
@@ -95,6 +95,5 @@ export const AI_PROMPT = `You are a travel planner. Generate a travel plan for {
       }
     ]
   }
-  Only include realistic and accurate travel-related data. suggest atleast 3 and more  hotels and 2 and more if convienet based on time places per day and real images.
+  Only include realistic and accurate travel-related data. suggest atleast 3 and  more  hotels.
   `;
-

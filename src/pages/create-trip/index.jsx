@@ -13,6 +13,9 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { useGoogleLogin } from "@react-oauth/google";
+import axios from "axios";
+import { doc, setDoc } from "firebase/firestore";
+import { db } from "@/service/FirebaseConfig";
 
 
 const CreateTrip = () => {
@@ -35,8 +38,9 @@ const CreateTrip = () => {
 
   const login = useGoogleLogin(
     {
-      onSuccess:(v)=>console.log(v),
-      onError:k=>console.log(k)
+      onSuccess:(v)=>getUserProfile(v),
+      onError:k=>console.log(k),
+      
 
     }
   )
@@ -49,7 +53,7 @@ const CreateTrip = () => {
     }
 
     if (
-      formData?.noofdays > "5" ||
+      formData?.noofdays > "5" ||formData.noofdays<"1"||
       !formData?.budget ||
       !formData?.traveller ||
       !formData?.location
@@ -70,12 +74,44 @@ const CreateTrip = () => {
         .replace("{budget}", formData.budget);
 
       const result = await generateTravelPlan(prompt);
+      saveDB(result);
 
       console.log(result);
+
       setLoading(false);
       setFormData([]);
+      
     }
   };
+  
+  const saveDB = async(trip)=>{
+    
+    const user = JSON.parse(localStorage.getItem('user'));
+    const docID = Date.now().toString()
+    await setDoc(doc(db, "AITrips", docID), {
+      userSelection : formData,
+      tripData : trip,
+      email :user?.email,
+      id:docID
+
+    });
+    
+  }
+  const getUserProfile = (tokenInfo)=>{
+    axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?acess_token=${tokenInfo?.access_token}`,
+      {
+        headers:{
+          Authorization:`Bearer ${tokenInfo.access_token}`,
+          Accept:'Application/json'
+        }
+      }
+    ).then((res)=>{
+      console.log(res);
+      localStorage.setItem('user',JSON.stringify(res.data));
+      setOpenDialog(false);
+      OnGenerateTrip();
+    })
+  }
 
   return (
     <div className="container mt-15 p-10 md:mx-auto flex flex-col justify-between md:w-3/4 relative ">
@@ -174,21 +210,21 @@ const CreateTrip = () => {
           className="mt-10 md:mx-10 mb-2 md:w-30 font-secondary md:flex md:absolute md:right-2 md:bottom-0 "
           onClick={OnGenerateTrip}
         >
-          {loading ? "Generating..." : "Generate"}
+          {loading ? <img src="/src/assets/loading.svg" className="h-6 w-6 animate-spin"></img> : "Generate"}
         </Button>
       </div>
       <Button
         className="mt-10 md:mx-10 mb-2 md:w-30 font-secondary md:absolute md:right-2 md:bottom-0 md:hidden"
         onClick={OnGenerateTrip}
       >
-        {loading ? "Generating..." : "Generate Travel Plan"}
+        {loading ? <img src="/src/assets/loading.svg" className="h-6 w-6 animate-spin"></img> : "Generate Travel Plan"}
       </Button>
       <Dialog open={openDialog}>
         
         <DialogContent>
           <DialogHeader>
             <DialogTitle className='flex justify-between'><img src="/src/assets/navigate-Trip-light.svg" alt="Navigate-Trip" className="h-7" />
-            <button onClick={()=>setOpenDialog(false)} className='relative bottom-3 left-1 bg-white hover:border-2 hover:border-black/40 h-5 w-5 z-50 font-primary rounded '>x</button></DialogTitle>
+            <button onClick={()=>setOpenDialog(false)} className='relative bottom-3 left-1 bg-white hover:border-2 hover:border-black/40 h-5 w-5 z-50 font-primary rounded'>x</button></DialogTitle>
             <DialogDescription>
               <h1 className="text-2xl md:text-3xl  text-black font-secondary text-start mt-3">Sign In with Google</h1>
               <p className="text-start text-xs md:text-lg md:font-primary md:text-gray-800"> Sign in to the App with Google authentication securely </p>
