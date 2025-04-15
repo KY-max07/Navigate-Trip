@@ -79,21 +79,23 @@ export const AI_PROMPT = `You are a travel planner. Generate a travel plan for {
     "itinerary": [
       {
         "day": 1,
-        "places": [
+        "places":(min:2 and max:4-5) [
           {
             "name": "Place Name",
             "details": "Place Details",
             "image_url": "Place Image URL",
             "geo": { "lat": 0.0, "lng": 0.0 },
+            "address": "Place Address",
             "ticket_price": "Place Ticket Pricing",
             "rating": 0.0,
             "travel_to_reach": "0 mins/hours",
             "time_to_spend": "0 mins/hours",
+            "to_visit":"10:00AM - 12:30PM",
             "best_time_to_visit": "Best Time to Visit"
           }
         ]
       }
     ]
   }
-  Only include realistic and accurate travel-related data. suggest atleast 3 and  more  hotels.
+  Only include realistic and accurate travel-related data. suggest atleast 3 and  more  hotels. Structure Timings of a Day to visit places(to_visit).
   `;

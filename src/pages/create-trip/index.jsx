@@ -10,13 +10,12 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
 import { doc, setDoc } from "firebase/firestore";
 import { db } from "@/service/FirebaseConfig";
-
+import { useNavigate } from "react-router-dom";
 
 const CreateTrip = () => {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
@@ -24,6 +23,7 @@ const CreateTrip = () => {
   const [formData, setFormData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
+  const navigate = useNavigate();
 
   const handleInputForm = (name, value) => {
     setFormData({
@@ -34,16 +34,11 @@ const CreateTrip = () => {
   useEffect(() => {
     console.log(formData);
   }, [formData]);
-    
 
-  const login = useGoogleLogin(
-    {
-      onSuccess:(v)=>getUserProfile(v),
-      onError:k=>console.log(k),
-      
-
-    }
-  )
+  const login = useGoogleLogin({
+    onSuccess: (v) => getUserProfile(v),
+    onError: (k) => console.log(k),
+  });
   const OnGenerateTrip = async () => {
     const user = localStorage.getItem("user");
 
@@ -53,7 +48,8 @@ const CreateTrip = () => {
     }
 
     if (
-      formData?.noofdays > "5" ||formData.noofdays<"1"||
+      formData?.noofdays > "5" ||
+      formData.noofdays < "1" ||
       !formData?.budget ||
       !formData?.traveller ||
       !formData?.location
@@ -80,38 +76,39 @@ const CreateTrip = () => {
 
       setLoading(false);
       setFormData([]);
-      
     }
   };
-  
-  const saveDB = async(trip)=>{
-    
-    const user = JSON.parse(localStorage.getItem('user'));
-    const docID = Date.now().toString()
-    await setDoc(doc(db, "AITrips", docID), {
-      userSelection : formData,
-      tripData : trip,
-      email :user?.email,
-      id:docID
 
+  const saveDB = async (trip) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const docID = Date.now().toString();
+    await setDoc(doc(db, "AITrips", docID), {
+      userSelection: formData,
+      tripData: trip,
+      email: user?.email,
+      id: docID,
     });
-    
-  }
-  const getUserProfile = (tokenInfo)=>{
-    axios.get(`https://www.googleapis.com/oauth2/v1/userinfo?acess_token=${tokenInfo?.access_token}`,
-      {
-        headers:{
-          Authorization:`Bearer ${tokenInfo.access_token}`,
-          Accept:'Application/json'
+    setLoading(false);
+    navigate("/view-trip/"+docID);
+  };
+  const getUserProfile = (tokenInfo) => {
+    axios
+      .get(
+        `https://www.googleapis.com/oauth2/v1/userinfo?acess_token=${tokenInfo?.access_token}`,
+        {
+          headers: {
+            Authorization: `Bearer ${tokenInfo.access_token}`,
+            Accept: "Application/json",
+          },
         }
-      }
-    ).then((res)=>{
-      console.log(res);
-      localStorage.setItem('user',JSON.stringify(res.data));
-      setOpenDialog(false);
-      OnGenerateTrip();
-    })
-  }
+      )
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("user", JSON.stringify(res.data));
+        setOpenDialog(false);
+        OnGenerateTrip();
+      });
+  };
 
   return (
     <div className="container mt-15 p-10 md:mx-auto flex flex-col justify-between md:w-3/4 relative ">
@@ -148,10 +145,10 @@ const CreateTrip = () => {
             type="number"
             name="days"
             required
-            placeholder="Ex. 3"
+            placeholder="Ex.  3+ENTER"
             min={1}
             max={5}
-            className="border border-gray-300 w-full h-10 rounded bg-white px-3 font-sans text-gray-700"
+            className="border border-gray-300 w-full h-10 rounded bg-white px-3 font-sans text-gray-700 placeholder:text-sm "
             onChange={(e) => handleInputForm("noofdays", e.target.value)}
           />
         </div>
@@ -165,9 +162,9 @@ const CreateTrip = () => {
               <div
                 key={item._id}
                 onClick={() => handleInputForm("traveller", item.people)}
-                className={`p-4 flex flex-col items-center justify-start border-black border-1 cursor-pointer backdrop-blur-sm rounded-2xl hover:shadow-lg hover:shadow-black hover:bg-gray-200 ${
+                className={`p-4 flex flex-col items-center justify-start shadow shadow-black/30 border-1 border-gray-200 cursor-pointer backdrop-blur-sm rounded-2xl hover:shadow-sm hover:shadow-black hover:bg-gray-200 hover:scale-102 transition-all  ${
                   formData?.traveller == item.people &&
-                  "shadow-lg shadow-black border-black border-3 bg-gray-300/80 backdrop-blur-2xl "
+                  "shadow-md shadow-black border-2 bg-gray-400/50 backdrop-blur-2xl scale-101"
                 }`}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
@@ -191,9 +188,9 @@ const CreateTrip = () => {
               <div
                 key={item._id}
                 onClick={() => handleInputForm("budget", item.title)}
-                className={`p-4 flex flex-col items-center justify-start border-black border-1 cursor-pointer backdrop-blur-sm rounded-2xl hover:shadow-md hover:shadow-black hover:bg-gray-200  ${
+                className={`p-4 flex flex-col items-center justify-start shadow-md shadow-black/30  border-1 cursor-pointer backdrop-blur-sm rounded-2xl hover:shadow-sm hover:shadow-black hover:bg-gray-200  hover:scale-102 transition-all ${
                   formData?.budget == item.title &&
-                  "shadow-lg shadow-black border-black border-3 bg-gray-300/8 backdrop-blur-2xl "
+                  "shadow-md shadow-black border-2 bg-gray-400/50 backdrop-blur-2xl scale-101"
                 }`}
               >
                 <h2 className="text-4xl">{item.icon}</h2>
@@ -210,32 +207,62 @@ const CreateTrip = () => {
           className="mt-10 md:mx-10 mb-2 md:w-30 font-secondary md:flex md:absolute md:right-2 md:bottom-0 "
           onClick={OnGenerateTrip}
         >
-          {loading ? <img src="/src/assets/loading.svg" className="h-6 w-6 animate-spin"></img> : "Generate"}
+          {loading ? (
+            <img
+              src="/src/assets/loading.svg"
+              className="h-6 w-6 animate-spin"
+            ></img>
+          ) : (
+            "Generate"
+          )}
         </Button>
       </div>
       <Button
         className="mt-10 md:mx-10 mb-2 md:w-30 font-secondary md:absolute md:right-2 md:bottom-0 md:hidden"
         onClick={OnGenerateTrip}
       >
-        {loading ? <img src="/src/assets/loading.svg" className="h-6 w-6 animate-spin"></img> : "Generate Travel Plan"}
+        {loading ? (
+          <img
+            src="/src/assets/loading.svg"
+            className="h-6 w-6 animate-spin"
+          ></img>
+        ) : (
+          "Generate Travel Plan"
+        )}
       </Button>
       <Dialog open={openDialog}>
-        
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className='flex justify-between'><img src="/src/assets/navigate-Trip-light.svg" alt="Navigate-Trip" className="h-7" />
-            <button onClick={()=>setOpenDialog(false)} className='relative bottom-3 left-1 bg-white hover:border-2 hover:border-black/40 h-5 w-5 z-50 font-primary rounded'>x</button></DialogTitle>
+            <DialogTitle className="flex justify-between">
+              <img
+                src="/src/assets/navigate-Trip-light.svg"
+                alt="Navigate-Trip"
+                className="h-7"
+              />
+              <button
+                onClick={() => setOpenDialog(false)}
+                className="relative bottom-3 left-1 bg-white hover:border-2 hover:border-black/40 h-5 w-5 z-50 font-primary rounded"
+              >
+                x
+              </button>
+            </DialogTitle>
             <DialogDescription>
-              <h1 className="text-2xl md:text-3xl  text-black font-secondary text-start mt-3">Sign In with Google</h1>
-              <p className="text-start text-xs md:text-lg md:font-primary md:text-gray-800"> Sign in to the App with Google authentication securely </p>
+              <h1 className="text-2xl md:text-3xl  text-black font-secondary text-start mt-3">
+                Sign In with Google
+              </h1>
+              <p className="text-start text-xs md:text-lg md:font-primary md:text-gray-800">
+                {" "}
+                Sign in to the App with Google authentication securely{" "}
+              </p>
 
-
-              <Button onClick={login} className='w-full mt-5'><img src="/src/assets/google.svg" alt="" className="h-4"/>Login with Google</Button>
+              <Button onClick={login} className="w-full mt-5">
+                <img src="/src/assets/google.svg" alt="" className="h-4" />
+                Login with Google
+              </Button>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
-     
     </div>
   );
 };
