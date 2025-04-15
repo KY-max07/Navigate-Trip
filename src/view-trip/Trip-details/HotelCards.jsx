@@ -17,10 +17,10 @@ useEffect(() => {
 
     try {
       const res = await GetPlaceDetails(data);
-      const name = res?.data?.places?.[0]?.photos?.[2]?.name;
+      const name = res?.data?.places?.[0]?.photos?.[3]?.name||res?.data?.places?.[0]?.photos?.[4]?.name ||res?.data?.places?.[0]?.photos?.[2]?.name;
 
       if (name) {
-        const URL = PhotoURL.replace('{name}',name)
+        const URL =  PhotoURL.replace('{name}',name)
         .replace('{600}', "600")
         .replace('{1600}', "400");
         setPhotoURi(URL);
@@ -53,7 +53,7 @@ useEffect(() => {
       target="_blank"
     >
       <img
-        src={photoURi?photoURi:"/src/assets/placeholder.jpg"}
+        src={photoURi? photoURi:"/src/assets/placeholder.jpg"}
         alt={hotel?.name}
         className="w-full h-40 object-cover rounded"
       />

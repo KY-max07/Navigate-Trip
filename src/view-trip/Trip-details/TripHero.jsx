@@ -6,22 +6,25 @@ import { NavLink } from "react-router-dom";
 const TripHero = ({ trip }) => {
  
 
-const [photoURi, setPhotoURi] = useState('');
+const [photoURi, setPhotoURi] = useState('/src/assets/placeholder.jpg');
 
 useEffect(() => {
   const GetInfo = async () => {
+   
+
     const data = {
-      textQuery: trip?.userSelection?.location?.label
+      textQuery: trip?.userSelection?.location?.label 
     };
 
     try {
       const res = await GetPlaceDetails(data);
-      const name = res?.data?.places?.[0]?.photos?.[2]?.name;
+      const name = res?.data?.places?.[0]?.photos?.[2]?.name||res?.data?.places?.[0]?.photos?.[4]?.name ||res?.data?.places?.[0]?.photos?.[2]?.name;
 
       if (name) {
         const URL = PhotoURL.replace('{name}',name)
         .replace('{600}', "600")
         .replace('{1600}', "1600");
+        console.log(URL)
         setPhotoURi(URL);
       } else {
         console.warn("No photo name found");

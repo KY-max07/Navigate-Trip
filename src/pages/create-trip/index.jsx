@@ -146,8 +146,6 @@ const CreateTrip = () => {
             name="days"
             required
             placeholder="Ex.  3+ENTER"
-            min={1}
-            max={5}
             className="border border-gray-300 w-full h-10 rounded bg-white px-3 font-sans text-gray-700 placeholder:text-sm "
             onChange={(e) => handleInputForm("noofdays", e.target.value)}
           />

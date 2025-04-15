@@ -15,18 +15,22 @@ const TripPlanCards = ({ places }) => {
       try {
         const res = await GetPlaceDetails(data);
 
-        const name = res?.data?.places?.[0]?.photos?.[5]?.name;
+        const name = res?.data?.places?.[0]?.photos?.[5]?.name ||res?.data?.places?.[0]?.photos?.[4]?.name ||res?.data?.places?.[0]?.photos?.[2]?.name;
 
         if (name) {
           const URL = PhotoURL.replace("{name}", name)
             .replace("{600}", "600")
             .replace("{1600}", "900");
-          setPhotoURi(URL);
+           
+            setPhotoURi(URL||"/src/assets/placeholder.jpg");
         } else {
+            setPhotoURi("/src/assets/placeholder.jpg")
           console.warn("No photo name found");
         }
       } catch (error) {
+        setPhotoURi("/src/assets/placeholder.jpg")
         console.error("Error fetching place details:", error);
+        
       }
     };
 
@@ -38,13 +42,15 @@ const TripPlanCards = ({ places }) => {
   }, [places]);
 
   return (
-    <div className="flex flex-col md:flex-row justify-between gap-2">
-      <img
-        src={photoURi ? photoURi : "/src/assets/placeholder.jpg"}
-        alt="place-image"
-        className="w-full md:w-60 rounded object-cover h-40 mr-2"
-      />
-      <div>
+    <div className="flex flex-col gap-2 mb-8">
+      <div className="w-full">
+        <img
+          src={photoURi || "/src/assets/placeholder.jpg"}
+          alt={places?.name || "Place_image"}
+          className="w-full md:w-full rounded object-cover h-40 mr-2"
+        />
+      </div>
+      <div className="md:w-3/3 ">
         <div className="flex justify-between">
           <h1 className="font-secondary text-2xl">{places?.name}</h1>
           <h3 className="font-mono ">⭐{places?.rating}</h3>
@@ -56,7 +62,7 @@ const TripPlanCards = ({ places }) => {
           {places?.details}
         </h2>
         <div className="flex mt-2  items-baseline-last justify-between">
-          <h2 className="font-primary font-bold tracking-wide absolute bottom-2">
+          <h2 className="font-primary font-bold tracking-wide absolute bottom-1 w-9/10 ">
             {places?.ticket_price}
           </h2>
           <NavLink
@@ -68,8 +74,8 @@ const TripPlanCards = ({ places }) => {
             }
             target="_blank"
           >
-            <Button className=" absolute bottom-2 right-2">
-              <img src="/src/assets/location1.svg" alt="" className="h-5 w-5" />
+            <Button className=" absolute bottom-2 right-2 p-2">
+              <img src="/src/assets/location1.svg" alt="" className="h-4 w-4 " />
             </Button>
           </NavLink>
         </div>
