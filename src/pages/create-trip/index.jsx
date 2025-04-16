@@ -40,6 +40,7 @@ const CreateTrip = () => {
     onError: (k) => console.log(k),
   });
   const OnGenerateTrip = async () => {
+    
     const user = localStorage.getItem("user");
 
     if (!user) {

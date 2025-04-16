@@ -6,6 +6,7 @@ const BASE_URL = `https://places.googleapis.com/v1/places:searchText?key=${impor
 const config ={
     headers:{
         'Content-type': 'application/json',
+        "X-Goog-Api-Key": import.meta.env.VITE_GOOGLE_MAPS_API_KEY_P,
 
          'X-Goog-FieldMask':[ 
             'places.id',

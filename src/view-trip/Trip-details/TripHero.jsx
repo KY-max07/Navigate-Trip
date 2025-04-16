@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 const TripHero = ({ trip }) => {
  
 
-const [photoURi, setPhotoURi] = useState('/src/assets/placeholder.jpg');
+const [photoURi, setPhotoURi] = useState('');
 
 useEffect(() => {
   const GetInfo = async () => {
@@ -15,19 +15,22 @@ useEffect(() => {
     const data = {
       textQuery: trip?.userSelection?.location?.label 
     };
+    console.log("Sending data to API:", data);
 
     try {
       const res = await GetPlaceDetails(data);
+      console.log("res=>",res)
       const name = res?.data?.places?.[0]?.photos?.[2]?.name||res?.data?.places?.[0]?.photos?.[4]?.name ||res?.data?.places?.[0]?.photos?.[2]?.name;
-
+      console.log("name=>",name)
       if (name) {
         const URL = PhotoURL.replace('{name}',name)
         .replace('{600}', "600")
         .replace('{1600}', "1600");
-        console.log(URL)
+       console.log(URL)
         setPhotoURi(URL);
       } else {
         console.warn("No photo name found");
+        setPhotoURi("/src/assets/image.png");
       }
     } catch (error) {
       console.error("Error fetching place details:", error);
@@ -46,9 +49,14 @@ useEffect(() => {
 
 
   return (
-    <div >
+    
+    <div>
       <img
-        src={photoURi? photoURi:"/src/assets/placeholder.jpg"}
+        src={photoURi? photoURi:"/src/assets/image.png"}
+        onError={(e) => {
+          e.target.onerror = null; 
+          e.target.src = "/src/assets/image.png"; 
+        }}
         alt="placeholder-image"
         className="w-full h-60 object-cover rounded "
       />

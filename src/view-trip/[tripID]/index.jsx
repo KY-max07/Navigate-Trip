@@ -10,6 +10,7 @@ import TripPlan from "../Trip-details/TripPlan";
 
 
 
+
 const ViewTrip = () => {
   const { tripID } = useParams();
   const [trip, setTrip] = useState([]);
@@ -33,6 +34,7 @@ const ViewTrip = () => {
   }, [tripID]);
   return (
     <div className="container mx-auto m-4 w-6/7 flex flex-col gap-6">
+      
       <TripHero trip={trip} />
       <Hotels trip={trip} />
       <TripPlan trip={trip}/>

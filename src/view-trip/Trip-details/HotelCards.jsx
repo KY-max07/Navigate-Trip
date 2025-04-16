@@ -14,6 +14,7 @@ useEffect(() => {
     const data = {
       textQuery: hotel?.name
     };
+    console.log("Sending data to API:", data);
 
     try {
       const res = await GetPlaceDetails(data);
@@ -53,9 +54,14 @@ useEffect(() => {
       target="_blank"
     >
       <img
-        src={photoURi? photoURi:"/src/assets/placeholder.jpg"}
+        src={photoURi? photoURi:"/src/assets/image.png"}
+        onError={(e) => {
+          e.target.onerror = null; 
+          e.target.src = "/src/assets/image.png"; 
+        }}
         alt={hotel?.name}
         className="w-full h-40 object-cover rounded"
+        loading="lazy" 
       />
 
       <div className="flex justify-between ">

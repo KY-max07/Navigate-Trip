@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import {
   Popover,
@@ -20,10 +20,8 @@ const Header = () => {
   const navigate = useNavigate();
   const [openDialog, setOpenDialog] = useState(false);
   const user = JSON.parse(localStorage.getItem("user"));
-  const picture = user?.picture;
-  useEffect(() => {
-    console.log(picture);
-  });
+
+  
   const login = useGoogleLogin({
     onSuccess: (v) => getUserProfile(v),
     onError: (k) => console.log(k),
@@ -40,7 +38,7 @@ const Header = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        
         localStorage.setItem("user", JSON.stringify(res.data));
         setOpenDialog(false);
       });
@@ -60,6 +58,9 @@ const Header = () => {
         {user ? (
           <div className="flex gap-2 items-center">
             <Button
+              onClick={() => {
+                navigate("/my-trip");
+              }}
               variant="outline"
               className="text-black text-2xl font-secondary rounded-full bg-black/10 hidden md:flex cursor-pointer"
             >
@@ -78,17 +79,22 @@ const Header = () => {
             <Popover>
               <PopoverTrigger>
                 <img
-                  src={user.picture||"/src/assets/profile.jpg" }
-                  alt=""
+                src={user.picture}
+                onError={(e) => {
+                  e.target.onerror = null; 
+                  e.target.src = "/src/assets/profile.jpg"; 
+                }}
+                  // src={user.picture || "/src/assets/profile.jpg"}
+                  alt="profile"
                   className="h-10 w-10 rounded-full mr-0 ml-5 object-cover cursor-pointer"
                 />
               </PopoverTrigger>
-              <PopoverContent className="bg-black/50 text-gray-900 font-secondary text-center text-2xl backdrop-blur-lg relative top-2 right-4 cursor-pointer hover:text-black/60">
+              <PopoverContent className="bg-black/50 text-white font-secondary text-center text-2xl backdrop-blur-lg relative top-2 right-4  flex flex-col gap-3 transition-all">
                 <h2
                   onClick={() => {
                     googleLogout();
                     localStorage.clear();
-                    
+
                     navigate("/", { replace: true });
 
                     // Disable back navigation
@@ -97,8 +103,21 @@ const Header = () => {
                       navigate("/", { replace: true });
                     };
                   }}
+                  className="hover:bg-gray-900 rounded p-2 cursor-pointer"
                 >
                   Logout
+                </h2>
+                <h2 className="hover:bg-gray-900 rounded p-2 cursor-pointer md:hidden" 
+                onClick={() => {
+                navigate("/create-trip");
+              }}
+              >
+                  Create-Trip
+                </h2>
+                <h2 className="hover:bg-gray-900 rounded p-2 cursor-pointer md:hidden" onClick={() => {
+                navigate("/my-trip");
+              }}>
+                  View-Trip
                 </h2>
               </PopoverContent>
             </Popover>

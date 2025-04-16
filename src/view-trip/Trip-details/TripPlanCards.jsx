@@ -24,11 +24,11 @@ const TripPlanCards = ({ places }) => {
            
             setPhotoURi(URL||"/src/assets/placeholder.jpg");
         } else {
-            setPhotoURi("/src/assets/placeholder.jpg")
+            
           console.warn("No photo name found");
         }
       } catch (error) {
-        setPhotoURi("/src/assets/placeholder.jpg")
+        
         console.error("Error fetching place details:", error);
         
       }
@@ -45,7 +45,11 @@ const TripPlanCards = ({ places }) => {
     <div className="flex flex-col gap-2 mb-8">
       <div className="w-full">
         <img
-          src={photoURi || "/src/assets/placeholder.jpg"}
+          src={photoURi || "/src/assets/image.png"}
+          onError={(e) => {
+            e.target.onerror = null; 
+            e.target.src = "/src/assets/image.png"; 
+          }}
           alt={places?.name || "Place_image"}
           className="w-full md:w-full rounded object-cover h-40 mr-2"
         />
@@ -62,7 +66,7 @@ const TripPlanCards = ({ places }) => {
           {places?.details}
         </h2>
         <div className="flex mt-2  items-baseline-last justify-between">
-          <h2 className="font-primary font-bold tracking-wide absolute bottom-1 w-9/10 ">
+          <h2 className="font-primary font-bold tracking-wide absolute bottom-1 w-8/10 ">
             {places?.ticket_price}
           </h2>
           <NavLink
@@ -75,7 +79,7 @@ const TripPlanCards = ({ places }) => {
             target="_blank"
           >
             <Button className=" absolute bottom-2 right-2 p-2">
-              <img src="/src/assets/location1.svg" alt="" className="h-4 w-4 " />
+              <img src="/src/assets/location1.svg" alt="" className="h-4 w-4 cursor-pointer"/>
             </Button>
           </NavLink>
         </div>

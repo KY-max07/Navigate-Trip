@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import Home from "@/pages/Home";
 import CreateTrip from "@/pages/create-trip";
 import ViewTrip from "@/view-trip/[tripID]";
+import MyTrip from "@/pages/MyTrip";
 
 export const router = createBrowserRouter([
   {
@@ -17,5 +18,10 @@ export const router = createBrowserRouter([
     
     ],
   },
+  {
+    path:"/my-trip",
+    element:<MyTrip/>,
+    errorElement:<NotFound/>
+  }
 
 ]);
