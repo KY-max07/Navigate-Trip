@@ -15,13 +15,13 @@ export const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/create-trip", element: <CreateTrip /> },
       {path:"/view-trip/:tripID", element: <ViewTrip/>},
-    
+      {
+        path:"/my-trip",
+        element:<MyTrip/>,
+        
+      }
     ],
   },
-  {
-    path:"/my-trip",
-    element:<MyTrip/>,
-    errorElement:<NotFound/>
-  }
+  
 
 ]);

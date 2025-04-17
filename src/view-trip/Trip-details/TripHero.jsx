@@ -59,6 +59,7 @@ useEffect(() => {
         }}
         alt="placeholder-image"
         className="w-full h-60 object-cover rounded "
+         loading="lazy"
       />
       <div className="m-2">
         <h1 className="font-secondary text-3xl md:text-5xl mt-8 ">

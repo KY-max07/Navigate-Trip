@@ -156,7 +156,7 @@ const Header = () => {
                 Sign in to the App with Google authentication securely{" "}
               </p>
 
-              <Button onClick={login} className="w-full mt-5">
+              <Button onClick={login} className="w-full mt-5 cursor-pointer">
                 <img src="/src/assets/google.svg" alt="" className="h-4" />
                 Login with Google
               </Button>

@@ -47,6 +47,7 @@ const MyTripCards = ({trip}) => {
           e.target.onerror = null; 
           e.target.src = "/src/assets/image.png"; 
         }}
+       
         alt={trip?.userSelection?.location?.label} className='object-cover rounded-xl h-80 w-full' loading="lazy" />
         <div>
             <h2 className='text-2xl font-secondary'>{trip?.userSelection?.location?.label}</h2>

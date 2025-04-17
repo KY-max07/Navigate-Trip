@@ -52,6 +52,7 @@ const TripPlanCards = ({ places }) => {
           }}
           alt={places?.name || "Place_image"}
           className="w-full md:w-full rounded object-cover h-40 mr-2"
+           loading="lazy"
         />
       </div>
       <div className="md:w-3/3 ">

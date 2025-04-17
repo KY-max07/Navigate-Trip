@@ -6,6 +6,7 @@ import { db } from "@/service/FirebaseConfig";
 import MyTripCards from "./MyTripCards";
 import { Button } from "@/components/ui/button";
 
+
 const MyTrip = () => {
   const navigate = useNavigate;
   const [trips, setTrips] = useState([]);
@@ -38,7 +39,8 @@ const MyTrip = () => {
   console.log(trips);
   return (
     <div className=" ">
-      <Header />
+      
+      
       <div className="container mt-15 p-10 md:mx-auto flex flex-col justify-between md:w-11/12 ">
         <h2 className="text-3xl md:text-4xl text-side font-secondary mb-2 md:mb-5">
           My-Trips
@@ -62,15 +64,7 @@ const MyTrip = () => {
         )}
         
       </div>
-      <div className="container mx-auto w-11/12 border border-t-gray-400 border-b-0 border-x-0 m-2 ">
-        <div className=" w-full p-4 uppercase font-secondary text-4xl md:text-9xl text-center border-b-1 border-gray-300">
-          navigate-trip-Ai
-        </div>
-        <h1 className="w-full text-center text-sm mt-2 text-gray-600 md:font-secondary md:text-xl">
-          {" "}
-          ©All rights reserved, Navigate-Trip.
-        </h1>
-      </div>
+      
     </div>
   );
 };
