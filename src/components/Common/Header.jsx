@@ -1,11 +1,14 @@
 import React, { useState } from "react";
+import profile from "../../assets/profile.jpg"
+import nav from '../../assets/navigate-Trip-light.svg'
+import google from "../../assets/google.svg"
 import { Button } from "../ui/button";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import {
+import {  
   Dialog,
   DialogContent,
   DialogDescription,
@@ -47,7 +50,7 @@ const Header = () => {
   return (
     <div className="container sticky top-2  w-11/12 mx-auto md:w-full pl-2 pr-3 md:pl-10 md:pr-13 text-gray-100 flex items-center justify-between h-15  rounded-3xl bg-black/25 backdrop-blur-md  mt-2 z-50">
       <img
-        src="/src/assets/Navigate-trip-light.svg"
+        src={nav}
         alt="Navigate-Trip"
         className="h-8 cursor-pointer"
         onClick={() => {
@@ -82,7 +85,7 @@ const Header = () => {
                 src={user.picture}
                 onError={(e) => {
                   e.target.onerror = null; 
-                  e.target.src = "/src/assets/profile.jpg"; 
+                  e.target.src = {profile}; 
                 }}
                   // src={user.picture || "/src/assets/profile.jpg"}
                   alt="profile"
@@ -136,7 +139,7 @@ const Header = () => {
           <DialogHeader>
             <DialogTitle className="flex justify-between">
               <img
-                src="/src/assets/navigate-Trip-light.svg"
+                src={nav}
                 alt="Navigate-Trip"
                 className="h-7"
               />
@@ -157,7 +160,7 @@ const Header = () => {
               </p>
 
               <Button onClick={login} className="w-full mt-5 cursor-pointer">
-                <img src="/src/assets/google.svg" alt="" className="h-4" />
+                <img src={google} alt="" className="h-4" />
                 Login with Google
               </Button>
             </DialogDescription>

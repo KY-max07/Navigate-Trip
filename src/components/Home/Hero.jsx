@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '../ui/button'
 // import Spline from "@splinetool/react-spline";
 import { NavLink } from 'react-router-dom'
+import logo from '../../assets/Navigate-trip-logo.svg'
 
 const Hero = () => {
   return (
@@ -12,7 +13,7 @@ const Hero = () => {
         <NavLink to="/create-trip">
         <Button className="text-md font-primary font-medium tracking-wider py-6 cursor-pointer">Get Started---It's Free⚡</Button>
         </NavLink>
-        <img src="/src/assets/Navigate-trip-logo.svg" alt="logo" className='m-30 md:m-40' />
+        <img src={logo} alt="logo" className='m-30 md:m-40' />
         {/* <Spline scene="https://prod.spline.design/fPwkp5jMlM8-UaAI/scene.splinecode" /> */}
     </div>
   )
