@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import profile from "../../assets/profile.jpg"
 import nav from '../../assets/navigate-Trip-light.svg'
 import google from "../../assets/google.svg"
+import logo from '../../assets/Navigate-trip-logo.svg'
 import { Button } from "../ui/button";
 import {
   Popover,
@@ -137,12 +138,8 @@ const Header = () => {
       <Dialog open={openDialog}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="flex justify-between">
-              <img
-                src={nav}
-                alt="Navigate-Trip"
-                className="h-7"
-              />
+            <DialogTitle className="flex justify-end">
+             
               <button
                 onClick={() => setOpenDialog(false)}
                 className="relative bottom-3 left-1 bg-white hover:border-2 hover:border-black/40 h-5 w-5 z-50 font-primary rounded"
@@ -151,15 +148,19 @@ const Header = () => {
               </button>
             </DialogTitle>
             <DialogDescription>
-              <h1 className="text-2xl md:text-3xl  text-black font-secondary text-start mt-3">
-                Sign In with Google
+              <h1 className="text-2xl md:text-3xl  text-black font-secondary text-start flex gap-2 items-center  relative top-[-25px]">
+              <img
+                src={logo}
+                alt="Navigate-Trip"
+                className="h-6"
+              />Sign In with Google
               </h1>
-              <p className="text-start text-xs md:text-lg md:font-primary md:text-gray-800">
+              <p className="text-start text-xs md:text-lg md:font-primary md:text-gray-800 relative top-[-20px]">
                 {" "}
                 Sign in to the App with Google authentication securely{" "}
               </p>
 
-              <Button onClick={login} className="w-full mt-5 cursor-pointer">
+              <Button onClick={login} className="w-full mt-5 cursor-pointer relative top-[-10px]">
                 <img src={google} alt="" className="h-4" />
                 Login with Google
               </Button>

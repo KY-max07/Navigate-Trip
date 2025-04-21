@@ -4,6 +4,9 @@ import { generateTravelPlan } from "@/service/AIModal";
 import React, {useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { toast } from "sonner";
+import logo from '../../assets/Navigate-trip-logo.svg'
+
+import google from "../../assets/google.svg"
 import {
   Dialog,
   DialogContent,
@@ -227,39 +230,39 @@ const CreateTrip = () => {
           "Generate Travel Plan"
         )}
       </Button>
-      <Dialog open={openDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="flex justify-between">
-              <img
-                src="/src/assets/navigate-Trip-light.svg"
-                alt="Navigate-Trip"
-                className="h-7"
-              />
-              <button
-                onClick={() => setOpenDialog(false)}
-                className="relative bottom-3 left-1 bg-white hover:border-2 hover:border-black/40 h-5 w-5 z-50 font-primary rounded"
-              >
-                x
-              </button>
-            </DialogTitle>
-            <DialogDescription>
-              <h1 className="text-2xl md:text-3xl  text-black font-secondary text-start mt-3">
-                Sign In with Google
-              </h1>
-              <p className="text-start text-xs md:text-lg md:font-primary md:text-gray-800">
-                {" "}
-                Sign in to the App with Google authentication securely{" "}
-              </p>
-
-              <Button onClick={login} className="w-full mt-5 cursor-pointer">
-                <img src="/src/assets/google.svg" alt="" className="h-4" />
-                Login with Google
-              </Button>
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
+       <Dialog open={openDialog}>
+              <DialogContent>
+                <DialogHeader>
+                  <DialogTitle className="flex justify-end">
+                   
+                    <button
+                      onClick={() => setOpenDialog(false)}
+                      className="relative bottom-3 left-1 bg-white hover:border-2 hover:border-black/40 h-5 w-5 z-50 font-primary rounded"
+                    >
+                      x
+                    </button>
+                  </DialogTitle>
+                  <DialogDescription>
+                    <div className="text-2xl md:text-3xl  text-black font-secondary text-start flex gap-2 items-center  relative top-[-25px]">
+                    <img
+                      src={logo}
+                      alt="Navigate-Trip"
+                      className="h-6"
+                    />Sign In with Google
+                    </div>
+                    <p className="text-start text-xs md:text-lg md:font-primary md:text-gray-800 relative top-[-20px]">
+                      {" "}
+                      Sign in to the App with Google authentication securely{" "}
+                    </p>
+      
+                    <Button onClick={login} className="w-full mt-5 cursor-pointer relative top-[-10px]">
+                      <img src={google} alt="" className="h-4" />
+                      Login with Google
+                    </Button>
+                  </DialogDescription>
+                </DialogHeader>
+              </DialogContent>
+            </Dialog>
     </div>
   );
 };
