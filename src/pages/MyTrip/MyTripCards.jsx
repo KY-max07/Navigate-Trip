@@ -1,9 +1,10 @@
 import { GetPlaceDetails, PhotoURL } from '@/service/GlobalApi';
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import image from "../../assets/image.png"
 
 const MyTripCards = ({trip}) => {
-    const [photoURi, setPhotoURi] = useState('/src/assets/placeholder.jpg');
+    const [photoURi, setPhotoURi] = useState('');
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -27,8 +28,8 @@ const MyTripCards = ({trip}) => {
           } else {
             console.warn("No photo name found");
           }
-        } catch (error) {
-          console.error("Error fetching place details:", error);
+        } catch (e) {
+          console.log("something went Wrong:",e);
         }
       };
     
@@ -37,21 +38,21 @@ const MyTripCards = ({trip}) => {
       } else {
         console.log('Trip not available');
       }
-    }, [trip]); 
+    }, []); 
     
   return (
-    <div className='hover:scale-102 transition-all cursor-pointer' onClick={()=>navigate("/view-trip/"+trip?.id)}>
+    <div className='md:hover:scale-102 transition-all cursor-pointer  p-1.5' onClick={()=>navigate("/view-trip/"+trip?.id)}>
         <img 
-        src={photoURi? photoURi:"/src/assets/image.png"}
+        src={photoURi}
         onError={(e) => {
           e.target.onerror = null; 
-          e.target.src = "/src/assets/image.png"; 
+          e.target.src = {image}; 
         }}
        
-        alt={trip?.userSelection?.location?.label} className='object-cover rounded-xl h-80 w-full' loading="lazy" />
+        alt={trip?.userSelection?.location?.label} className='object-cover rounded-xl h-50 md:h-80 w-full' loading="lazy" />
         <div>
-            <h2 className='text-2xl font-secondary'>{trip?.userSelection?.location?.label}</h2>
-            <p className='text-md md:font-primary'>A {trip?.userSelection?.noofdays}-day trip for {trip?.userSelection?.traveller} on a {trip?.userSelection?.budget} budget.</p>
+            <h2 className='text-xl md:text-2xl font-secondary px-1 pt-3'>{trip?.userSelection?.location?.label}</h2>
+            <p className='text-sm md:text-md md:font-primary px-1'>A {trip?.userSelection?.noofdays}-day trip for {trip?.userSelection?.traveller} on a {trip?.userSelection?.budget} budget.</p>
         </div>
     </div>
   )

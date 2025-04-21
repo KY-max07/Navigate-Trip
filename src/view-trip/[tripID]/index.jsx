@@ -33,7 +33,7 @@ const ViewTrip = () => {
     }
   }, [tripID]);
   return (
-    <div className="container mx-auto m-4 w-6/7 flex flex-col gap-6">
+    <div className="container mx-auto m-4  w-full md:w-6/7 flex flex-col gap-6">
       
       <TripHero trip={trip} />
       <Hotels trip={trip} />

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { GetPlaceDetails, PhotoURL } from "@/service/GlobalApi";
+import image from "../../assets/image.png"
+import location from "../../assets/location1.svg"
 
 const TripPlanCards = ({ places }) => {
   const [photoURi, setPhotoURi] = useState("");
@@ -22,14 +24,14 @@ const TripPlanCards = ({ places }) => {
             .replace("{600}", "600")
             .replace("{1600}", "900");
            
-            setPhotoURi(URL||"/src/assets/placeholder.jpg");
+            setPhotoURi(URL);
         } else {
             
           console.warn("No photo name found");
         }
       } catch (error) {
         
-        console.error("Error fetching place details:", error);
+        console.error("Error fetching place details:",error);
         
       }
     };
@@ -39,16 +41,16 @@ const TripPlanCards = ({ places }) => {
     } else {
       console.log("Trip not available");
     }
-  }, [places]);
+  }, []);
 
   return (
     <div className="flex flex-col gap-2 mb-8">
       <div className="w-full">
         <img
-          src={photoURi || "/src/assets/image.png"}
+          src={photoURi? photoURi : image}
           onError={(e) => {
             e.target.onerror = null; 
-            e.target.src = "/src/assets/image.png"; 
+            e.target.src = {image}; 
           }}
           alt={places?.name || "Place_image"}
           className="w-full md:w-full rounded object-cover h-40 mr-2"
@@ -80,7 +82,7 @@ const TripPlanCards = ({ places }) => {
             target="_blank"
           >
             <Button className=" absolute bottom-2 right-2 p-2">
-              <img src="/src/assets/location1.svg" alt="" className="h-4 w-4 cursor-pointer"/>
+              <img src={location} alt="" className="h-4 w-4 cursor-pointer"/>
             </Button>
           </NavLink>
         </div>

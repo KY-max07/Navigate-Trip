@@ -41,12 +41,12 @@ const MyTrip = () => {
     <div className=" ">
       
       
-      <div className="container mt-15 p-10 md:mx-auto flex flex-col justify-between md:w-11/12 ">
-        <h2 className="text-3xl md:text-4xl text-side font-secondary mb-2 md:mb-5">
+      <div className="container mx-auto  mt-15 p-3 md:p-10  flex flex-col justify-between md:w-full">
+        <h2 className="text-3xl md:text-4xl text-side font-secondary mb-3 md:mb-5">
           My-Trips
         </h2>
         {!trips ? (
-          <div className="min-h-100 md:min-h-83  flex flex-col gap-2 md:gap-6 items-center justify-center text-center">
+          <div className="min-h-100 md:min-h-83  flex flex-col gap-1 md:gap-6 items-center justify-center text-center">
             <h2 
             className="  text-red-700 font-secondary text-2xl md:text-3xl ">
               Sorry! You don't have past trips
@@ -55,11 +55,17 @@ const MyTrip = () => {
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 min-h-83">
-          {trips.reverse().map((trip, index) => (
+          {trips.length>0?trips.reverse().map((trip, index) => (
             <div key={index}>
               <MyTripCards trip={trip} />
             </div>
-          ))}
+          )):
+          [1,2,3,4,5,6].map((i,index)=>(
+            <div key={index} className="h-60 md:h-90 bg-gray-300 animate-pulse rounded-xl">
+                
+            </div>
+          ))
+          }
         </div>
         )}
         

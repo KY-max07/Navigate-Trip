@@ -1,6 +1,7 @@
 import { GetPlaceDetails, PhotoURL } from "@/service/GlobalApi";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import image from "../../assets/image.png"
 
 
 
@@ -38,7 +39,7 @@ useEffect(() => {
   } else {
     console.log('Trip not available');
   }
-}, [hotel]); 
+}, []); 
 
 
 
@@ -54,10 +55,10 @@ useEffect(() => {
       target="_blank"
     >
       <img
-        src={photoURi? photoURi:"/src/assets/image.png"}
+        src={photoURi? photoURi:{image}}
         onError={(e) => {
           e.target.onerror = null; 
-          e.target.src = "/src/assets/image.png"; 
+          e.target.src = {image}; 
         }}
         alt={hotel?.name}
         className="w-full h-40 object-cover rounded"

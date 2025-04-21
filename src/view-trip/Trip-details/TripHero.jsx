@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { GetPlaceDetails, PhotoURL } from "@/service/GlobalApi";
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import image from "../../assets/image.png"
+import location from "../../assets/location1.svg"
 
 const TripHero = ({ trip }) => {
  
@@ -30,7 +32,7 @@ useEffect(() => {
         setPhotoURi(URL);
       } else {
         console.warn("No photo name found");
-        setPhotoURi("/src/assets/image.png");
+        
       }
     } catch (error) {
       console.error("Error fetching place details:", error);
@@ -42,7 +44,7 @@ useEffect(() => {
   } else {
     console.log('Trip not available');
   }
-}, [trip]); 
+}, []); 
 
 
 
@@ -52,10 +54,10 @@ useEffect(() => {
     
     <div>
       <img
-        src={photoURi? photoURi:"/src/assets/image.png"}
+        src={photoURi? photoURi:{image}}
         onError={(e) => {
           e.target.onerror = null; 
-          e.target.src = "/src/assets/image.png"; 
+          e.target.src = {image}; 
         }}
         alt="placeholder-image"
         className="w-full h-60 object-cover rounded "
@@ -79,7 +81,7 @@ useEffect(() => {
           </div>
           <NavLink to={"https://www.google.com/maps/search/?api=1&query="+trip?.userSelection?.location?.label} target="_blank" >
           <Button className="cursor-pointer mx-5 ">
-            <img src="/src/assets/location1.svg" alt="" className="h-6 w-6 " />
+            <img src={location} alt="" className="h-6 w-6 " />
           </Button>
           </NavLink>
         </div>

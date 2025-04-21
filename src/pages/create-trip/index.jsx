@@ -5,7 +5,7 @@ import React, {useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { toast } from "sonner";
 import logo from '../../assets/Navigate-trip-logo.svg'
-
+import loadings from "../../assets/loading.svg"
 import google from "../../assets/google.svg"
 import {
   Dialog,
@@ -209,7 +209,7 @@ const CreateTrip = () => {
         >
           {loading ? (
             <img
-              src="/src/assets/loading.svg"
+              src={loadings}
               className="h-6 w-6 animate-spin cursor-wait"
             ></img>
           ) : (
@@ -223,7 +223,7 @@ const CreateTrip = () => {
       >
         {loading ? (
           <img
-            src="/src/assets/loading.svg"
+            src={loadings}
             className="h-6 w-6 animate-spin cursor-pointer"
           ></img>
         ) : (
