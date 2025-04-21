@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { AI_PROMPT, Budget, SelectTravelList } from "@/Constants/Options";
 import { generateTravelPlan } from "@/service/AIModal";
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 import { toast } from "sonner";
 import {
@@ -31,9 +31,7 @@ const CreateTrip = () => {
       [name]: value,
     });
   };
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  
 
   const login = useGoogleLogin({
     onSuccess: (v) => getUserProfile(v),
@@ -73,7 +71,7 @@ const CreateTrip = () => {
       const result = await generateTravelPlan(prompt);
       saveDB(result);
 
-      console.log(result);
+      
 
       setLoading(false);
       setFormData([]);
@@ -104,7 +102,7 @@ const CreateTrip = () => {
         }
       )
       .then((res) => {
-        console.log(res);
+        
         localStorage.setItem("user", JSON.stringify(res.data));
         setOpenDialog(false);
         OnGenerateTrip();
@@ -203,13 +201,13 @@ const CreateTrip = () => {
       </div>
       <div className=" hidden w-full md:flex justify-end md:mt-10 md:px-10">
         <Button
-          className="mt-10 md:mx-10 mb-2 md:w-30 font-secondary md:flex md:absolute md:right-2 md:bottom-0 "
+          className="mt-10 md:mx-10 mb-2 md:w-30 cursor-pointer font-secondary md:flex md:absolute md:right-2 md:bottom-0 "
           onClick={OnGenerateTrip}
         >
           {loading ? (
             <img
               src="/src/assets/loading.svg"
-              className="h-6 w-6 animate-spin"
+              className="h-6 w-6 animate-spin cursor-wait"
             ></img>
           ) : (
             "Generate"
@@ -217,13 +215,13 @@ const CreateTrip = () => {
         </Button>
       </div>
       <Button
-        className="mt-10 md:mx-10 mb-2 md:w-30 font-secondary md:absolute md:right-2 md:bottom-0 md:hidden"
+        className="mt-10 md:mx-10 mb-2 md:w-30 cursor-pointer font-secondary md:absolute md:right-2 md:bottom-0 md:hidden"
         onClick={OnGenerateTrip}
       >
         {loading ? (
           <img
             src="/src/assets/loading.svg"
-            className="h-6 w-6 animate-spin"
+            className="h-6 w-6 animate-spin cursor-pointer"
           ></img>
         ) : (
           "Generate Travel Plan"

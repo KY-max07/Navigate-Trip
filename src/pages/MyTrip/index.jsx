@@ -1,10 +1,10 @@
-import Header from "@/components/Common/Header";
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/service/FirebaseConfig";
 import MyTripCards from "./MyTripCards";
-import { Button } from "@/components/ui/button";
+
 
 
 const MyTrip = () => {
@@ -17,7 +17,7 @@ const MyTrip = () => {
 
   const getTrips = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
+
     if (!user) {
       navigate("/");
       return;
@@ -32,11 +32,11 @@ const MyTrip = () => {
     setTrips([]);
     querySnapshot.forEach((doc) => {
       // doc.data() is never undefined for query doc snapshots
-      console.log(doc.id, " => ", doc.data());
+     
       setTrips((prev) => [...prev, doc.data()]);
     });
   };
-  console.log(trips);
+  
   return (
     <div className=" ">
       

@@ -79,7 +79,7 @@ export const AI_PROMPT = `You are a travel planner. Generate a travel plan for {
     "itinerary": [
       {
         "day": 1,
-        "places":(min:2 and max:4-5) [
+        "places":(min:4(if not possible then 2/3) and max:5-6, ideal=4) [
           {
             "name": "Place Name",
             "details": "Place Details",

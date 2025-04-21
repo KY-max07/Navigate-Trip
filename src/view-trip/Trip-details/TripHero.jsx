@@ -15,18 +15,18 @@ useEffect(() => {
     const data = {
       textQuery: trip?.userSelection?.location?.label 
     };
-    console.log("Sending data to API:", data);
+    
 
     try {
       const res = await GetPlaceDetails(data);
-      console.log("res=>",res)
+      
       const name = res?.data?.places?.[0]?.photos?.[2]?.name||res?.data?.places?.[0]?.photos?.[4]?.name ||res?.data?.places?.[0]?.photos?.[2]?.name;
-      console.log("name=>",name)
+      
       if (name) {
         const URL = PhotoURL.replace('{name}',name)
         .replace('{600}', "600")
         .replace('{1600}', "1600");
-       console.log(URL)
+       
         setPhotoURi(URL);
       } else {
         console.warn("No photo name found");

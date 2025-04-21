@@ -14,7 +14,7 @@ useEffect(() => {
     const data = {
       textQuery: hotel?.name
     };
-    console.log("Sending data to API:", data);
+  
 
     try {
       const res = await GetPlaceDetails(data);
