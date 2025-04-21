@@ -13,7 +13,7 @@ const MyTrip = () => {
 
   useEffect(() => {
     getTrips();
-  }, []);
+  });
 
   const getTrips = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
