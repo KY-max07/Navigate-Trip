@@ -52,18 +52,18 @@ const MyTrip = () => {
         <h2 className="text-3xl md:text-4xl text-side font-secondary mb-3 md:mb-5">
           My-Trips
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 min-h-83">
         {!show ? (
-          [1,2,3,4,5,6].map((i,index)=>(
-            <div key={index} className="h-60 md:h-90 bg-gray-300 animate-pulse rounded-xl">
+           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 min-h-83">
+          {[1,2,3,4,5,6].map((i,index)=>(
+            <div key={index} className="h-60 md:h-90 bg-gray-300 animate-pulse rounded-xl ">
                 
             </div>
-          ))
-          
+          ))}
+          </div> 
         ) : (
-        <div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 min-h-83">
           {trips.length>0?trips.reverse().map((trip, index) => (
-            <div key={index}>
+            <div key={index} >
               <MyTripCards trip={trip} />
             </div>
           )):
@@ -82,7 +82,7 @@ const MyTrip = () => {
         
       </div>
       
-    </div>
+   
   );
 };
 

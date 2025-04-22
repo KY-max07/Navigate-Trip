@@ -146,7 +146,7 @@ const Header = () => {
              
               <button
                 onClick={() => setOpenDialog(false)}
-                className="relative bottom-3 left-1 bg-white hover:border-2 hover:border-black/40 h-5 w-5 z-50 font-primary rounded"
+                className="relative bottom-3 left-2 bg-white hover:border-2 hover:border-black/40 h-5 w-5 z-50 font-primary rounded"
               >
                 x
               </button>
