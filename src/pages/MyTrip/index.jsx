@@ -46,7 +46,7 @@ const MyTrip = () => {
           My-Trips
         </h2>
         {!trips ? (
-          <div className="min-h-100 md:min-h-83  flex flex-col gap-1 md:gap-6 items-center justify-center text-center">
+          <div className="min-h-120 md:min-h-83  flex flex-col gap-1 md:gap-6 items-center justify-center text-center">
             <h2 
             className="  text-red-700 font-secondary text-2xl md:text-3xl ">
               Sorry! You don't have past trips
