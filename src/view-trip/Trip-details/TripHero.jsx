@@ -9,11 +9,24 @@ const TripHero = ({ trip }) => {
   const [photoURi, setPhotoURi] = useState("");
 
   useEffect(() => {
+    const fallbackPlaces = [
+      "India",
+      "pune, india",
+      "kerala, india",
+      "mannar, kerala, India",
+      "hyderabad, India",
+      "mumbai, india",
+      "delhi, india",
+      "ooty, india",
+    
+    ];
+    const random =
+      fallbackPlaces[Math.floor(Math.random() * fallbackPlaces.length)];
     const GetInfo = async () => {
       const data = {
-        textQuery: trip?.userSelection?.location?.label || "India",
+        textQuery: trip?.userSelection?.location?.label || random,
       };
-     console.log(data)
+      
       try {
         const res = await GetPlaceDetails(data);
 
