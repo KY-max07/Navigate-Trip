@@ -44,13 +44,13 @@ const MyTripCards = ({ trip }) => {
   return (
     <div
       className="md:hover:scale-102 transition-all cursor-pointer  p-1.5"
-      onClick={() => navigate("/view-trip/" + trip?.id)}
+      onClick={() => navigate(`/view-trip/${trip?.id}`)}
     >
       <img
         src={photoURi}
         onError={(e) => {
           e.target.onerror = null;
-          e.target.src = { image };
+          e.target.src =  image ;
         }}
         alt={trip?.userSelection?.location?.label}
         className="object-cover rounded-xl h-50 md:h-80 w-full"
