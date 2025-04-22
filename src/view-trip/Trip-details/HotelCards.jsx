@@ -55,10 +55,10 @@ useEffect(() => {
       target="_blank"
     >
       <img
-        src={photoURi? photoURi:{image}}
+        src={photoURi? photoURi:image}
         onError={(e) => {
           e.target.onerror = null; 
-          e.target.src = {image}; 
+          e.target.src = image; 
         }}
         alt={hotel?.name}
         className="w-full h-40 object-cover rounded"

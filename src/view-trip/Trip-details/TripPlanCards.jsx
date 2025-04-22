@@ -50,7 +50,7 @@ const TripPlanCards = ({ places }) => {
           src={photoURi? photoURi : image}
           onError={(e) => {
             e.target.onerror = null; 
-            e.target.src = {image}; 
+            e.target.src = image; 
           }}
           alt={places?.name || "Place_image"}
           className="w-full md:w-full rounded object-cover h-40 mr-2"

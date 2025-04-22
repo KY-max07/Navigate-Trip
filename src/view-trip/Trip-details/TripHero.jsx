@@ -44,7 +44,7 @@ useEffect(() => {
   } else {
     console.log('Trip not available');
   }
-}, []); 
+}, [trip]); 
 
 
 
@@ -54,10 +54,10 @@ useEffect(() => {
     
     <div>
       <img
-        src={photoURi? photoURi:{image}}
+        src={photoURi? photoURi:image}
         onError={(e) => {
           e.target.onerror = null; 
-          e.target.src = {image}; 
+          e.target.src = image; 
         }}
         alt="placeholder-image"
         className="w-full h-60 object-cover rounded "
