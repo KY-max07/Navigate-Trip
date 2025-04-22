@@ -13,7 +13,7 @@ const MyTrip = () => {
 
   useEffect(() => {
     getTrips();
-  });
+  },[]);
 
   const getTrips = async () => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -34,7 +34,7 @@ const MyTrip = () => {
       // doc.data() is never undefined for query doc snapshots
      
       setTrips((prev) => [...prev, doc.data()]);
-    });
+    },[]);
   };
   
   return (

@@ -114,12 +114,14 @@ const Header = () => {
                 <h2 className="hover:bg-gray-900 rounded p-2 cursor-pointer md:hidden" 
                 onClick={() => {
                 navigate("/create-trip");
+                setOpenDialog(false);
               }}
               >
                   Create-Trip
                 </h2>
                 <h2 className="hover:bg-gray-900 rounded p-2 cursor-pointer md:hidden" onClick={() => {
                 navigate("/my-trip");
+                setOpenDialog(false);
               }}>
                   View-Trip
                 </h2>

@@ -39,7 +39,7 @@ useEffect(() => {
   } else {
     console.log('Trip not available');
   }
-}, [hotel]); 
+}, []); 
 
 
 

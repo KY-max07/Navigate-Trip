@@ -44,7 +44,7 @@ const TripPlanCards = ({ places }) => {
     } else {
       console.log("Trip not available");
     }
-  }, [places]);
+  }, []);
 
   return (
     <div className="flex flex-col gap-2 mb-8">
