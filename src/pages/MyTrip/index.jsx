@@ -62,7 +62,8 @@ const MyTrip = () => {
           </div> 
         ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6 min-h-83">
-          {trips.length>0?trips.reverse().map((trip, index) => (
+          {trips.length>0?
+          trips.reverse().map((trip, index) => (
             <div key={index} >
               <MyTripCards trip={trip} />
             </div>
