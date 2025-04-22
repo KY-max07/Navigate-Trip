@@ -18,7 +18,7 @@ const MyTripCards = ({ trip }) => {
         const name =
           res?.data?.places?.[0]?.photos?.[2]?.name ||
           res?.data?.places?.[0]?.photos?.[4]?.name ||
-          res?.data?.places?.[0]?.photos?.[2]?.name;
+          res?.data?.places?.[0]?.photos?.[7]?.name;
 
         if (name) {
           const URL = PhotoURL.replace("{name}", name)

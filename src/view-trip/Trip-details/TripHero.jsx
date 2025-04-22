@@ -22,7 +22,7 @@ useEffect(() => {
     try {
       const res = await GetPlaceDetails(data);
       
-      const name = res?.data?.places?.[0]?.photos?.[2]?.name||res?.data?.places?.[0]?.photos?.[4]?.name ||res?.data?.places?.[0]?.photos?.[2]?.name;
+      const name = res?.data?.places?.[0]?.photos?.[2]?.name||res?.data?.places?.[0]?.photos?.[4]?.name ||res?.data?.places?.[0]?.photos?.[7]?.name;
       
       if (name) {
         const URL = PhotoURL.replace('{name}',name)
@@ -36,7 +36,7 @@ useEffect(() => {
         
       }
     } catch (error) {
-      console.error("Error fetching place details:", error);
+      console.error("something went wrong:", error);
     }
   };
 
@@ -55,7 +55,7 @@ useEffect(() => {
     
     <div>
       <img
-        src={photoURi? photoURi:image}
+        src={photoURi}
         onError={(e) => {
           e.target.onerror = null; 
           e.target.src = image; 
