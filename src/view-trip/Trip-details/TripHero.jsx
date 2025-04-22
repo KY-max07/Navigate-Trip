@@ -30,7 +30,7 @@ useEffect(() => {
         .replace('{1600}', "1600");
        
         setPhotoURi(URL);
-        console.log(URL)
+        
       } else {
         console.warn("No photo name found");
         

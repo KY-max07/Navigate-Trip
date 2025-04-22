@@ -15,7 +15,7 @@ const TripPlanCards = ({ places }) => {
      
         
       };
-      console.log(places?.name);
+      
 
       try {
         const res = await GetPlaceDetails(data);
