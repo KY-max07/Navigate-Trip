@@ -39,7 +39,7 @@ const MyTripCards = ({ trip }) => {
     } else {
       console.log("Trip not available");
     }
-  }, []);
+  }, [trip]);
 
   return (
     <div

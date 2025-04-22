@@ -12,7 +12,10 @@ const TripPlanCards = ({ places }) => {
     const GetInfo = async () => {
       const data = {
         textQuery: places?.name,
+     
+        
       };
+      console.log(places?.name);
 
       try {
         const res = await GetPlaceDetails(data);
@@ -41,7 +44,7 @@ const TripPlanCards = ({ places }) => {
     } else {
       console.log("Trip not available");
     }
-  }, []);
+  }, [places]);
 
   return (
     <div className="flex flex-col gap-2 mb-8">
