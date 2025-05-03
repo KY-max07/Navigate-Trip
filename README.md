@@ -1,6 +1,7 @@
 <p align="center">
   <img src="./src/assets/Navigate-trip-dark.svg" alt="Navigate-Trip Logo" width="900"/>
 </p>
+<br/>
 Website -> [Navigate-Trip](https://navigate-trip.vercel.app/)
 
 <br/><br/>
@@ -28,7 +29,7 @@ npm start
 
 ---
 
-## 🚀 Features
+## ⚡Features
 
 1. **Login with Gmail** using **Google-Oauth**
 2. **Plan a Trip** by entering:
@@ -54,7 +55,7 @@ npm start
 
 ---
 
-## 🛠️ Tech Stack
+## 🌟Tech Stack
 
 * **Frontend**: React, TailwindCSS
 * **Backend/Services**: Firebase, Gemini AI
@@ -66,7 +67,7 @@ npm start
 
 ---
 
-## 📸 Screenshots & Demo
+## ❤️‍🔥Screenshots & Demo
 
 [Live Demo](https://navigate-trip.vercel.app/)
 
