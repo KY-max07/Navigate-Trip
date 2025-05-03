@@ -1,12 +1,73 @@
-# React + Vite
+# 🌍 Navigate-Trip
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Navigate-Trip** is a simple and smart trip planner web app built using **React**, **Firebase**, **TailwindCSS**, **Gemini AI**, and **Google APIs** like **Google Places**, and **Google Photos**. It helps users plan trips easily with personalized itineraries.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Feel Free to check out the Website  and explore or modify it!**
+[Navigate-Trip](https://navigate-trip.vercel.app/)
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. **Login with Gmail** using **Google-Oauth**
+2. **Plan a Trip** by entering:
+
+   * Destination
+   * Number of days
+   * Number of travelers
+   * Budget
+3. **AI Suggestions** from **Gemini AI API**:
+
+   * Day-wise plans with timings
+   * Recommended places to visit
+   * Hotel suggestions
+4. **Photos from Google**:
+
+   * Shows related images using **Google Photos API**
+5. **Open in Google Maps**:
+
+   * Click on any location to view it on **Google Maps**
+6. **Trip History**:
+
+   * View past trip plans with your **Gmail login**
+
+---
+
+## 🛠️ Tech Stack
+
+* **Frontend**: React, TailwindCSS
+* **Backend/Services**: Firebase, Gemini AI
+* **APIs**:
+
+  * Google Places API
+  * Google Photos API
+  * Gemini AI API
+
+---
+
+## 📸 Screenshots & Demo
+
+[Live Demo](https://navigate-trip.vercel.app/)
+
+[Manual or Guide](https://drive.google.com/drive/folders/19f7BmsvGjWaq7LSH38afouT_H_LN2T_4?usp=sharing)
+---
+
+## 📂 Setup Instructions
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/yourusername/navigate-trip.git
+
+# 2. Install dependencies
+cd navigate-trip
+npm install
+
+# 3. Start development server
+npm start
+```
+
+---
+
+## 📧 Contact
+
+For questions or suggestions, feel free to reach out via \[your email] or create an issue.
