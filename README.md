@@ -1,7 +1,7 @@
 <p align="center">
   <img src="./src/assets/Navigate-trip-dark.svg" alt="Navigate-Trip Logo" width="900"/>
 </p>
-
+Website -> [Navigate-Trip](https://navigate-trip.vercel.app/)
 
 <br/><br/>
 
@@ -10,7 +10,22 @@
 
 **Feel Free to check out the Website  and explore or modify it!**
 <br/>
-Website -> [Navigate-Trip](https://navigate-trip.vercel.app/)
+
+---
+## 📂 Setup Instructions
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/yourusername/navigate-trip.git
+
+# 2. Install dependencies
+cd navigate-trip
+npm install
+
+# 3. Start development server
+npm start
+```
+
 ---
 
 ## 🚀 Features
@@ -58,22 +73,8 @@ Website -> [Navigate-Trip](https://navigate-trip.vercel.app/)
 [Manual or Guide](https://drive.google.com/drive/folders/19f7BmsvGjWaq7LSH38afouT_H_LN2T_4?usp=sharing)
 ---
 
-## 📂 Setup Instructions
 
-```bash
-# 1. Clone the repository
-git clone https://github.com/yourusername/navigate-trip.git
-
-# 2. Install dependencies
-cd navigate-trip
-npm install
-
-# 3. Start development server
-npm start
-```
-
----
 
 ## 📧 Contact
 
-For questions or suggestions, feel free to reach out via \[your email] or create an issue.
+For questions or suggestions, feel free to reach out via \[koushikyerraguntla@gmail.com] or create an issue.
