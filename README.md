@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="./Navigate-trip-dark.svg" alt="Navigate-Trip Logo" width="300"/>
+</p>
+
+
 # 🌍 Navigate-Trip
 
 **Navigate-Trip** is a simple and smart trip planner web app built using **React**, **Firebase**, **TailwindCSS**, **Gemini AI**, and **Google APIs** like **Google Places**, and **Google Photos**. It helps users plan trips easily with personalized itineraries.
