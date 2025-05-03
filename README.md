@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./src/assests/Navigate-trip-dark.svg" alt="Navigate-Trip Logo" width="300"/>
+  <img src="./src/assets/Navigate-trip-dark.svg" alt="Navigate-Trip Logo" width="300"/>
 </p>
 
 
