@@ -9,7 +9,8 @@
 
 
 **Feel Free to check out the Website  and explore or modify it!**
-[Navigate-Trip](https://navigate-trip.vercel.app/)
+<br/>
+Website -> [Navigate-Trip](https://navigate-trip.vercel.app/)
 ---
 
 ## 🚀 Features
